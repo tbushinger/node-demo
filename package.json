@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "fastify": "^4.19.2"
+  },
+  "name": "node-demo-api",
+  "description": "Node demo responsive API",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo NA",
+    "start": "node ./server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tbushinger/node-demo.git"
+  },
+  "keywords": [
+    "node",
+    "api",
+    "fastify",
+    "REST"
+  ],
+  "author": "Anthony J Bushinger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tbushinger/node-demo/issues"
+  },
+  "homepage": "https://github.com/tbushinger/node-demo#readme"
+}
