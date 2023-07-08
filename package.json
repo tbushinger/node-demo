@@ -1,13 +1,13 @@
 {
   "dependencies": {
-    "fastify": "^4.19.2"
+    "fastify": "^4.19.2",
+    "sqlite3": "^5.1.6"
   },
   "name": "node-demo-api",
   "description": "Node demo responsive API",
   "version": "1.0.0",
   "main": "src/index.js",
   "type": "module",
-  "devDependencies": {},
   "scripts": {
     "test": "echo NA",
     "start": "node ./src/index.js"
