@@ -1,25 +1,37 @@
+import { createRepo, RepoProviders } from "./src/repos/index.js";
+import { createService, ServiceProviders } from "./src/services/index.js"
+
+import Path from "path";
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = Path.dirname(__filename);
+
+
 async function main() {
-  const url = Path.resolve(__dirname, "../../../db/city_populations.db");
+  const url = Path.resolve(__dirname, "./db/city_populations.db");
+  const populationRepo = createRepo(RepoProviders.SQLLite, { url });
+  const populationService = createService(ServiceProviders.Population, populationRepo);
 
-  const repo = new SQLLiteRepo({ url });
+  let result = await populationService.getPopulation("Florida", "Oviedo");
+  console.log(result);
 
-  let population = await repo.getPopulation("Florida", "Oviedo");
-  console.log(population);
+  result = await populationService.getPopulation("Guam", "Guam");
+  console.log(result);
 
-  population = await repo.getPopulation("Guam", "Guam");
-  console.log(population);
+  result = await populationService.setPopulation("Guam", "Guam", 150000);
+  console.log(result);
 
-  await repo.createPopulation("Guam", "Guam", 150000);
+  result = await populationService.getPopulation("Guam", "Guam");
+  console.log(result);
 
-  population = await repo.getPopulation("Guam", "Guam");
-  console.log(population);
+  result = await populationService.setPopulation("Guam", "Guam", 3000000);
+  console.log(result);
 
-  await repo.updatePopulation("Guam", "Guam", 300000);
+  result = await populationService.getPopulation("Guam", "Guam");
+  console.log(result);
 
-  population = await repo.getPopulation("Guam", "Guam");
-  console.log(population);
-
-  repo.dispose();
+  populationService.dispose();
 }
 
 main();
