@@ -48,7 +48,7 @@ export default function registerPopulationRoutes(server, populationService, rout
     handler: async (request, reply) => {
       const { state, city } = request.params;
       const populationText = request.body;
-      const population = parseInt(populationText, 36);
+      const population = parseInt(populationText);
 
       const { status, data } = await populationService.setPopulation(state, city, population);
 
