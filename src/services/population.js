@@ -14,6 +14,10 @@ function createErrorResult(error) {
     return createResult(statusCodes.Internal, { message: internalServerError });
 }
 
+function createPopulationNotFoundResult(state, city) {
+    return createResult(statusCodes.NotFound, { message: `Population for state "${state}" and city "${city}" not found!`});
+}
+
 export class PopulationService {
     #repo = null;
 
@@ -31,9 +35,11 @@ export class PopulationService {
     async getPopulation(state, city) {
         try {
             const population = await this.#repo.getPopulation(state, city);
-            const status = (population) ? statusCodes.Found : statusCodes.NotFound;
+            if (population) {
+                return createResult(statusCodes.Found, population);
+            }
 
-            return createResult(status, population);
+            return createPopulationNotFoundResult(state, city);
         } catch (err) {
             return createErrorResult(err);
         }
