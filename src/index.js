@@ -1,5 +1,5 @@
-import { AppCluster } from "./app.cluster.js";
-import { createAppFactory } from "./app.factory.js";
+import { AppCluster } from "./app/app.cluster.js";
+import { createAppFactory } from "./app/app.factory.js";
 import { createRepo, RepoProviders } from "./repos/index.js";
 import { createService, ServiceProviders } from "./services/index.js";
 import registerRoutes from "./routes/index.js";

@@ -1,7 +1,7 @@
 import cluster from 'node:cluster';
 import * as os from "os";
 
-const CPUS = 1; // os.cpus().length
+const CPUS = 1; // os.cpus().length;
 
 export class AppCluster {
     #appFactory = null;
