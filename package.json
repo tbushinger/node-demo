@@ -11,7 +11,8 @@
   "scripts": {
     "test": "echo NA",
     "seed": "node ./seed/index.js",
-    "start": "node ./src/index.js"
+    "start": "node ./src/index.js",
+    "demo": "node ./demo/index.js"
   },
   "repository": {
     "type": "git",
@@ -28,5 +29,8 @@
   "bugs": {
     "url": "https://github.com/tbushinger/node-demo/issues"
   },
-  "homepage": "https://github.com/tbushinger/node-demo#readme"
+  "homepage": "https://github.com/tbushinger/node-demo#readme",
+  "devDependencies": {
+    "node-fetch": "^3.3.1"
+  }
 }
