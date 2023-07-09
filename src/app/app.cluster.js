@@ -1,13 +1,18 @@
 import cluster from 'node:cluster';
 import * as os from "os";
 
-const CPUS = 1; // os.cpus().length;
+const CPUS = os.cpus().length;
 
 export class AppCluster {
     #appFactory = null;
+    #maxWorkers = CPUS;
 
-    constructor(appFactory) {
+    constructor(appFactory, options = {}) {
         this.#appFactory = appFactory;
+
+        if (options.maxWorkers && options.maxWorkers < CPUS) {
+            this.#maxWorkers = options.maxWorkers;
+        }
     }
 
     run() {
@@ -22,7 +27,7 @@ export class AppCluster {
         console.log("Total Number of Cores: %o", CPUS)
         console.log("Main %o is running", process.pid)
 
-        for (let i = 0; i < CPUS; i++) {
+        for (let i = 0; i < this.#maxWorkers; i++) {
             const fork = cluster.fork();
             setTimeout(() => {
                 fork.send(i);
