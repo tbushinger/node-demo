@@ -1,7 +1,7 @@
 import { App } from "./app.js";
 
-export async function appFactory(worker, registerRoutes) {
-    const app = new App({ port: 3000, logger: true });
+export async function appFactory(worker, registerRoutes, appOptions, serverOptions) {
+    const app = new App(appOptions, serverOptions);
 
     registerRoutes(app.server());
 
@@ -10,8 +10,12 @@ export async function appFactory(worker, registerRoutes) {
     console.log("Server ready at %s on worker %o", url, worker);
 }
 
-export function createAppFactory(registerRoutes) {
+export function createAppFactory(
+    registerRoutes,
+    appOptions = { port: 3000 },
+    serverOptions = { logger: true },
+) {
     return (worker) => {
-        appFactory(worker, registerRoutes);
+        appFactory(worker, registerRoutes, appOptions, serverOptions);
     };
 }

@@ -4,7 +4,7 @@ export class App {
     #server = null;
     #appOptions = {};
 
-    constructor (appOptions = { port: 3000 }, serverOptions = {  logger: true }) {
+    constructor (appOptions, serverOptions) {
         this.#appOptions = appOptions;
         this.#server = fastify(serverOptions);
     }
