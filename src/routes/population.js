@@ -27,4 +27,31 @@ export default function registerPopulationRoutes(server, populationService, rout
       reply.code(status).send(data);
     }
   });
+
+  server.route({
+    method: 'PUT',
+    url: `${routePrefix}/state/:state/city/:city`,
+    schema: {
+      response: {
+        200: {
+          type: 'boolean'
+        },
+        201: {
+          type: 'boolean'
+        },
+        500: messageSchema
+      },
+      body: {
+        type: 'number'
+      }
+    },
+    handler: async (request, reply) => {
+      const populationText = request.body;
+      const population = parseInt(populationText, 36);
+
+      const { status, data } = await populationService.setPopulation(state, city, population);
+
+      reply.code(status).send(data);
+    }
+  });
 }
