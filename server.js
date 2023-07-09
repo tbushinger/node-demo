@@ -1,18 +1,25 @@
-// Import the framework and instantiate it
-import Fastify from 'fastify'
-const fastify = Fastify({
-  logger: true
-})
+async function main() {
+  const url = Path.resolve(__dirname, "../../../db/city_populations.db");
 
-// Declare a route
-fastify.get('/', async function handler (request, reply) {
-  return { hello: 'world' }
-})
+  const repo = new SQLLiteRepo({ url });
 
-// Run the server!
-try {
-  await fastify.listen({ port: 3000 })
-} catch (err) {
-  fastify.log.error(err)
-  process.exit(1)
+  let population = await repo.getPopulation("Florida", "Oviedo");
+  console.log(population);
+
+  population = await repo.getPopulation("Guam", "Guam");
+  console.log(population);
+
+  await repo.createPopulation("Guam", "Guam", 150000);
+
+  population = await repo.getPopulation("Guam", "Guam");
+  console.log(population);
+
+  await repo.updatePopulation("Guam", "Guam", 300000);
+
+  population = await repo.getPopulation("Guam", "Guam");
+  console.log(population);
+
+  repo.dispose();
 }
+
+main();

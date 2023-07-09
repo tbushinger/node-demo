@@ -1,5 +1,5 @@
 import fs from "fs";
-import Path, { resolve } from "path";
+import Path from "path";
 import { fileURLToPath } from 'url';
 import sqlite3 from 'sqlite3';
 
