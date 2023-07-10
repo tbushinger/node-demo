@@ -32,7 +32,7 @@ const appFactory = createAppFactory((server) => {
     const populationService = createService(ServiceProviders.Population, populationRepo);
   
     // Routes
-    registerRoutes(server, { populationService }, "/api/population");
+    registerRoutes(server, { populationService });
 }, appOptions, serverOptions);
 
 const appCluster = new AppCluster(appFactory, { maxWorkers });
