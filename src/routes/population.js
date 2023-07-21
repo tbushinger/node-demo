@@ -13,7 +13,12 @@ export default function registerPopulationRoutes(server, populationService, rout
     schema: {
       response: {
         200: {
-          type: 'number'
+          type: 'object',
+          properties: {
+            population: {
+              type: "number"
+            }
+          }
         },
         400: messageSchema,
         500: messageSchema

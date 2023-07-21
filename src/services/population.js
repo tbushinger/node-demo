@@ -36,7 +36,7 @@ export class PopulationService {
         try {
             const population = await this.#repo.getPopulation(state, city);
             if (population) {
-                return createResult(statusCodes.Found, population);
+                return createResult(statusCodes.Found, { population });
             }
 
             return createPopulationNotFoundResult(state, city);
