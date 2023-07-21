@@ -25,4 +25,4 @@ npm run demo
 
  * `SQLLite` was used for the persistence layer for simplicity.  A better solution would be to preload the data into a Redis cache.
  * The project doesn't have unit tests which should be normally included.
- * I don't prefer node clustering over an intra-structure solutions.  AWS, Azure, and Kubernetes provide such solutions.
+ * I don't prefer node clustering over an intra-structure solution.  AWS, Azure, and Kubernetes provide such solutions.
